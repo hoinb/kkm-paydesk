@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BASEDIR="/home/$USER/kkm-paydesk"
-echo $BASEDIR
+KKM_PAYDESK_BASEDIR="/home/$USER/kkm-paydesk"
+echo $KKM_PAYDESK_BASEDIR
 
 
 # Install required packages with APT
@@ -15,19 +15,19 @@ sudo apt install -y \
 
 
 # Install Java JRE
-rm -rf "$BASEDIR/flohmarkthelfer/jre/*"
+rm -rf "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre/*"
 l_jreTgzfile=""
 if [ "amd64" = "$(dpkg --print-architecture)" ]; then
-  l_jreTgzfile=$(ls -1 $BASEDIR/install/java-jre/*-linux_x64.tar.gz)
+  l_jreTgzfile=$(ls -1 $KKM_PAYDESK_BASEDIR/install/java-jre/*-linux_x64.tar.gz)
   echo "$l_jreTgzfile"
 elif [ "i386" = "$(dpkg --print-architecture)" ]; then
-  l_jreTgzfile=$(ls -1 $BASEDIR/install/java-jre/*-linux_i686.tar.gz)
+  l_jreTgzfile=$(ls -1 $KKM_PAYDESK_BASEDIR/install/java-jre/*-linux_i686.tar.gz)
   echo "$l_jreTgzfile"
 else
   echo "cannot detect system architecture ($(dpkg --print-architecture))" ; exit 5;
 fi
 
-mkdir -p "$BASEDIR/flohmarkthelfer/jre" \
-    && tar xzf $l_jreTgzfile -C "$BASEDIR/flohmarkthelfer/jre" \
+mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre" \
+    && tar xzf $l_jreTgzfile -C "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre" --strip-components 1 \
   || { echo "cannot extract Java Runtime Environment" ; exit 4; }
 
