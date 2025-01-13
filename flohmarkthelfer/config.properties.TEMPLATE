@@ -1,0 +1,5 @@
+[dummy]
+buttons.all=false
+postcode=false
+peer.name=GIVE_ME_A_STATION_NAME
+sync.path=./sync
