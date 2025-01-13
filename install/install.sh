@@ -1,18 +1,24 @@
 #!/bin/bash
 
-KKM_PAYDESK_BASEDIR="/home/$USER/kkm-paydesk"
-echo $KKM_PAYDESK_BASEDIR
 
+#
+# usage:
+# $ set -o allexport && source kkm-paydesk.env && set +o allexport && ./install/install.sh
+#
+
+echo ">> $KKM_PAYDESK_BASEDIR"
 
 # Install required packages with APT
 sudo apt update \
   || { echo "apt update failed." ; exit 1; }
+
 sudo apt install -y \
   python3-pip \
   || { echo "apt install failed." ; exit 2; }
 
 # Create Python venv and install required pip packages
 
+# TODO
 
 # Install Java JRE
 rm -rf "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre/*"
@@ -29,5 +35,10 @@ fi
 
 mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre" \
     && tar xzf $l_jreTgzfile -C "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre" --strip-components 1 \
-  || { echo "cannot extract Java Runtime Environment" ; exit 4; }
+  || { echo "cannot extract Java Runtime Environment" ; exit 6; }
 
+# Ensure that required folders for Flohmarkthelfer are existing
+mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/data" \
+    && mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/log" \
+    && mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/sync" \
+  || { echo "cannot create required folders" ; exit 7; }
