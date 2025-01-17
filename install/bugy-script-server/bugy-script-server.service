@@ -1,0 +1,12 @@
+[Unit]
+Description=Bugy Script Server
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
