@@ -63,6 +63,11 @@ mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/data" \
 #
 # SECTION 3   ---   Install Bugy Script Server
 #
+if [ -z "$(systemctl --user list-units --full -all | grep "bugy-script-serverX")" ] ; 
+then
+  systemctl --user stop bugy-script-server \
+    ||  { echo "cannot stop script server" ; exit 31; }
+fi
 cd $KKM_PAYDESK_BASEDIR \
   && rm -rf ./python-venv \
   && mkdir ./python-venv \
@@ -72,10 +77,20 @@ cd $KKM_PAYDESK_BASEDIR \
     tornado \
   ||  { echo "cannot install pip packages" ; exit 35; }
 wget "https://github.com/bugy/script-server/releases/download/$KKM_PAYDESK_SCRIPT_SERVER_TAG/script-server.zip" \
-  ||  { echo "cannot download script-server.zip" ; exit 35; }
+  ||  { echo "cannot download script-server.zip" ; exit 36; }
 rm -rf ./bugy-script-server \
   && mkdir -p bugy-script-server \
-  && unzip -d bugy-script-server script-server.zip \
+  && unzip -q -d bugy-script-server script-server.zip \
   && rm script-server.zip \
-  ||  { echo "cannot extract script-server.zip" ; exit 35; }
-  
+  ||  { echo "cannot extract script-server.zip" ; exit 37; }
+mkdir -p ./bugy-script-server/conf \
+  && cp ./install/bugy-script-server/conf.json ./bugy-script-server/conf \
+  ||  { echo "cannot deploy config file" ; exit 38; }
+mkdir -p ~/.config/systemd/user \
+  && rm  -f ~/.config/systemd/user/bugy-script-server.service \
+  && cp ./install/bugy-script-server/bugy-script-server.service ~/.config/systemd/user \
+  && sed -i "/ExecStart=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/python-venv\/bin\/python3 ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/launcher.py --config-file ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/conf\/conf.json/" ~/.config/systemd/user/bugy-script-server.service \
+  ||  { echo "cannot extract systemd service for script-server" ; exit 39; }
+systemctl --user daemon-reload \
+  && systemctl --user enable --now bugy-script-server \
+  ||  { echo "cannot launch script-server via systemd" ; exit 39; }
