@@ -3,3 +3,5 @@ flohmarkthelfer/config.properties
 flohmarkthelfer/floh.mv.db
 flohmarkthelfer/log
 flohmarkthelfer/data
+script-server
+python-venv
