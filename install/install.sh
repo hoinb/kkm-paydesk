@@ -20,6 +20,9 @@ sudo apt install -y \
 
 # TODO
 
+
+source ./kkm-paydesk.env
+
 # Install Java JRE
 rm -rf "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/jre/*"
 l_jreTgzfile=""
