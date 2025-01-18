@@ -115,6 +115,8 @@ then
     ||  { echo "cannot stop kkm-sync-flohmarkthelfer-to-google-drive" ; exit 42; }
 fi
 
+rclone config
+
 mkdir -p ~/.config/systemd/user \
   && rm  -f ~/.config/systemd/user/kkm-sync-flohmarkthelfer-to-google-drive.* \
   && cp ./install/kkm-sync-flohmarkthelfer-to-google-drive.* ~/.config/systemd/user \
