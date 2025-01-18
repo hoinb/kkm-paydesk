@@ -63,7 +63,7 @@ mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/data" \
 #
 # SECTION 3   ---   Install Bugy Script Server
 #
-if ( systemctl --user list-unit-files "bogy-script-server.service" ) ; 
+if ( systemctl --user list-unit-files "bugy-script-server.service" ) ; 
 then
   systemctl --user stop bugy-script-server \
     ||  { echo "cannot stop script server" ; exit 31; }
