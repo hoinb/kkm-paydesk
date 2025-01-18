@@ -5,13 +5,6 @@
   "output_format": "terminal",
   "parameters": [
     {
-      "name": "JAVA_HOME",
-      "default": "/home/rainer/kkm-paydesk/flohmarkthelfer/jre",
-      "constant": true,
-      "pass_as": "env_variable",
-      "env_var": "JAVA_HOME"
-    },
-    {
       "name": "KKM_FLOHMARKTHELFER_BUTTONS_ALL",
       "type": "list",
       "default": "false",

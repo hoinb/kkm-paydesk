@@ -5,6 +5,7 @@ cd flohmarkthelfer
 SECONDHAND_JAR="$(ls -1 ./lib/secondhand-gui-5.*.jar)"
 CONFIG_FILE_TEMPLATE="./config.properties.TEMPLATE"
 CONFIG_FILE="./config.properties"
+JAVA_HOME="$(pwd)/jre"
 
 # prepare config file
 rm -f $CONFIG_FILE
