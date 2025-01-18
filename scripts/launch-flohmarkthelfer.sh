@@ -11,7 +11,7 @@ JAVA_HOME="$(pwd)/jre"
 rm -f $CONFIG_FILE
 cp $CONFIG_FILE_TEMPLATE $CONFIG_FILE
 sed -i "/buttons.all=/ s/=.*/=$KKM_FLOHMARKTHELFER_BUTTONS_ALL/" $CONFIG_FILE
-sed -i "/peer.name=/ s/=.*/=$HOSTNAME/" $CONFIG_FILE
+sed -i "/peer.name=/ s/=.*/=$(hostname)/" $CONFIG_FILE
 
 # lauch Flomarkthelfer
 $JAVA_HOME/bin/java -jar $SECONDHAND_JAR \
