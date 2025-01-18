@@ -93,8 +93,34 @@ mkdir -p ~/.config/systemd/user \
   && rm  -f ~/.config/systemd/user/bugy-script-server.service \
   && cp ./install/bugy-script-server.service ~/.config/systemd/user \
   && sed -i "/ExecStart=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/python-venv\/bin\/python3 ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/launcher.py --config-dir ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server-static\/conf/" ~/.config/systemd/user/bugy-script-server.service \
-  ||  { echo "cannot extract systemd service for script-server" ; exit 39; }
+  ||  { echo "cannot extract systemd service for script-server" ; exit 38; }
 
 systemctl --user daemon-reload \
   && systemctl --user enable --now bugy-script-server \
   ||  { echo "cannot launch script-server via systemd" ; exit 39; }
+
+
+
+#
+# Section 4   ---   Connect to Google Drive (Backup for Flohmarkthelfer data) via RClone
+#
+if ( ! which rclone ); then
+  { sudo -v ; curl https://rclone.org/install.sh | sudo bash; } \
+    ||  { echo "cannot install RClone" ; exit 41; }
+fi
+
+if ( systemctl --user list-unit-files "kkm-sync-flohmarkthelfer-to-google-drive.timer" ) ; 
+then
+  systemctl --user stop kkm-sync-flohmarkthelfer-to-google-drive \
+    ||  { echo "cannot stop kkm-sync-flohmarkthelfer-to-google-drive" ; exit 42; }
+fi
+
+mkdir -p ~/.config/systemd/user \
+  && rm  -f ~/.config/systemd/user/kkm-sync-flohmarkthelfer-to-google-drive.* \
+  && cp ./install/kkm-sync-flohmarkthelfer-to-google-drive.* ~/.config/systemd/user \
+  && sed -i "/WorkingDirectory=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}/" ~/.config/systemd/user/kkm-sync-flohmarkthelfer-to-google-drive.service \
+  ||  { echo "cannot extract systemd service for script-server" ; exit 43; }
+
+systemctl --user daemon-reload \
+  && systemctl --user enable --now kkm-sync-flohmarkthelfer-to-google-drive.timer \
+  ||  { echo "cannot launch kkm-sync-flohmarkthelfer-to-google-drive via systemd" ; exit 44; }

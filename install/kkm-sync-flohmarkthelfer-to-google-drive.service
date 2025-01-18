@@ -1,0 +1,7 @@
+[Unit]
+Description=KKM / Sync Flohmarkthelfer Data to Google Drive (Service)
+
+[Service]
+Type=oneshot
+WorkingDirectory=
+ExecStart=bash -c "rclone -v sync ./flohmarkthelfer/sync gdrive-info-at-kinderkleidermarkt-st-peter-de:/kkm-kasse-sync/$HOSTNAME"
