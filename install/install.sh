@@ -88,14 +88,10 @@ rm -rf ./bugy-script-server \
   && rm script-server.zip \
   ||  { echo "cannot extract script-server.zip" ; exit 37; }
 
-mkdir -p ./bugy-script-server/conf \
-  && cp -r ./install/bugy-script-server/conf ./bugy-script-server \
-  ||  { echo "cannot deploy config file" ; exit 38; }
-
 mkdir -p ~/.config/systemd/user \
   && rm  -f ~/.config/systemd/user/bugy-script-server.service \
-  && cp ./install/bugy-script-server/bugy-script-server.service ~/.config/systemd/user \
-  && sed -i "/ExecStart=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/python-venv\/bin\/python3 ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/launcher.py --config-file ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/conf\/conf.json/" ~/.config/systemd/user/bugy-script-server.service \
+  && cp ./install/bugy-script-server.service ~/.config/systemd/user \
+  && sed -i "/ExecStart=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/python-venv\/bin\/python3 ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/launcher.py --config-dir ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server-conf/" ~/.config/systemd/user/bugy-script-server.service \
   ||  { echo "cannot extract systemd service for script-server" ; exit 39; }
 
 systemctl --user daemon-reload \
