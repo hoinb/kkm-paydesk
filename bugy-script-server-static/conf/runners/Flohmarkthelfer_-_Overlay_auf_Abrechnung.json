@@ -1,0 +1,7 @@
+{
+  "name": "Flohmarkthelfer - Overlay auf Abrechnung",
+  "script_path": "./scripts/add-overlay-to-payoff.sh",
+  "working_directory": "..",
+  "output_format": "terminal",
+  "parameters": []
+}

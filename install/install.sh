@@ -15,6 +15,7 @@ sudo apt update \
 sudo apt install -y \
   python3-pip \
   python3-venv \
+  pdftk \
   || { echo "apt install failed." ; exit 2; }
 
 # Create Python venv and install required pip packages

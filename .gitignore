@@ -1,8 +1,9 @@
+flohmarkthelfer/data
 flohmarkthelfer/jre
+flohmarkthelfer/log
+flohmarkthelfer/sync
 flohmarkthelfer/config.properties
 flohmarkthelfer/*.db
-flohmarkthelfer/log
-flohmarkthelfer/data
-flohmarkthelfer/sync
+flohmarkthelfer/verkaeufer-abrechnung-overlay.pdf
 /bugy-script-server
 python-venv
