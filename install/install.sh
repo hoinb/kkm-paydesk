@@ -2,34 +2,20 @@
 
 
 #
-# usage:
-# $ set -o allexport && source kkm-paydesk.env && set +o allexport && ./install/install.sh
-#
-
-echo ">> $KKM_PAYDESK_BASEDIR"
-
-# Install required packages with APT
-sudo apt update \
-  || { echo "apt update failed." ; exit 1; }
-
-sudo apt install -y \
-  python3-pip \
-  python3-venv \
-  pdftk \
-  || { echo "apt install failed." ; exit 2; }
-
-# Create Python venv and install required pip packages
-
-# TODO
-
-
-#
 # SECTION 1   ---   Basic Setup
 #
 source ./kkm-paydesk.env \
   || { echo "cannot source env variables" ; exit 11; }
 
+# Install required packages with APT
+sudo apt update \
+  || { echo "apt update failed." ; exit 12; }
 
+sudo apt install -y \
+  python3-pip \
+  python3-venv \
+  pdftk \
+  || { echo "apt install failed." ; exit 13; }
 
 
 #
@@ -74,30 +60,30 @@ cd $KKM_PAYDESK_BASEDIR \
   && rm -rf ./python-venv \
   && mkdir ./python-venv \
   && python3 -m venv ./python-venv \
-  ||  { echo "cannot install python venv" ; exit 34; }
+  ||  { echo "cannot install python venv" ; exit 32; }
 
 ./python-venv/bin/pip install \
     tornado \
-  ||  { echo "cannot install pip packages" ; exit 35; }
+  ||  { echo "cannot install pip packages" ; exit 33; }
 
 wget -q "https://github.com/bugy/script-server/releases/download/$KKM_PAYDESK_SCRIPT_SERVER_TAG/script-server.zip" \
-  ||  { echo "cannot download script-server.zip" ; exit 36; }
+  ||  { echo "cannot download script-server.zip" ; exit 34; }
 
 rm -rf ./bugy-script-server \
   && mkdir -p bugy-script-server \
   && unzip -q -d bugy-script-server script-server.zip \
   && rm script-server.zip \
-  ||  { echo "cannot extract script-server.zip" ; exit 37; }
+  ||  { echo "cannot extract script-server.zip" ; exit 35; }
 
 mkdir -p ~/.config/systemd/user \
   && rm  -f ~/.config/systemd/user/bugy-script-server.service \
   && cp ./install/bugy-script-server.service ~/.config/systemd/user \
   && sed -i "/WorkingDirectory=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server/" ~/.config/systemd/user/bugy-script-server.service \
-  ||  { echo "cannot extract systemd service for script-server" ; exit 38; }
+  ||  { echo "cannot extract systemd service for script-server" ; exit 36; }
 
 systemctl --user daemon-reload \
   && systemctl --user enable --now bugy-script-server \
-  ||  { echo "cannot launch script-server via systemd" ; exit 39; }
+  ||  { echo "cannot launch script-server via systemd" ; exit 37; }
 
 
 
