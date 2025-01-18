@@ -1,0 +1,14 @@
+{
+  "name": "Flohmarkthelfer - Artikeltexte kuerzen",
+  "script_path": "./scripts/database-shorten-item-descriptions.sh",
+  "working_directory": "..",
+  "parameters": [
+    {
+      "name": "JAVA_HOME",
+      "default": "/home/rainer/kkm-paydesk/flohmarkthelfer/jre",
+      "constant": true,
+      "pass_as": "env_variable",
+      "env_var": "JAVA_HOME"
+    }
+  ]
+}
