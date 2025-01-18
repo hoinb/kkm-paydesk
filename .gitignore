@@ -1,7 +1,8 @@
 flohmarkthelfer/jre
 flohmarkthelfer/config.properties
-flohmarkthelfer/floh.mv.db
+flohmarkthelfer/*.db
 flohmarkthelfer/log
 flohmarkthelfer/data
+flohmarkthelfer/sync
 /bugy-script-server
 python-venv
