@@ -16,6 +16,17 @@
       "constant": true,
       "pass_as": "env_variable",
       "env_var": "JAVA_HOME"
+    },
+    {
+      "name": "KKM_FLOHMARKTHELFER_BUTTONS_ALL",
+      "type": "list",
+      "default": "false",
+      "values": [
+        "false",
+        "true"
+      ],
+      "pass_as": "env_variable",
+      "env_var": "KKM_FLOHMARKTHELFER_BUTTONS_ALL"
     }
   ]
 }
