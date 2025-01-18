@@ -91,7 +91,7 @@ rm -rf ./bugy-script-server \
 mkdir -p ~/.config/systemd/user \
   && rm  -f ~/.config/systemd/user/bugy-script-server.service \
   && cp ./install/bugy-script-server.service ~/.config/systemd/user \
-  && sed -i "/ExecStart=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/python-venv\/bin\/python3 ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/launcher.py --config-dir ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server-conf/" ~/.config/systemd/user/bugy-script-server.service \
+  && sed -i "/ExecStart=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/python-venv\/bin\/python3 ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server\/launcher.py --config-dir ${KKM_PAYDESK_BASEDIR//\//\\/}\/bugy-script-server-static\/conf/" ~/.config/systemd/user/bugy-script-server.service \
   ||  { echo "cannot extract systemd service for script-server" ; exit 39; }
 
 systemctl --user daemon-reload \
