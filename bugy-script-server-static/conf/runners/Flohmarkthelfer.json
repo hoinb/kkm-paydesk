@@ -1,15 +1,9 @@
 {
   "name": "Flohmarkthelfer",
-  "script_path": "/home/rainer/kkm-paydesk/scripts/launch-flohmarkthelfer.sh",
+  "script_path": "./scripts/launch-flohmarkthelfer.sh",
+  "working_directory": "..",
   "output_format": "terminal",
   "parameters": [
-    {
-      "name": "KKM_PAYDESK_BASEDIR",
-      "default": "/home/rainer/kkm-paydesk",
-      "constant": true,
-      "pass_as": "env_variable",
-      "env_var": "KKM_PAYDESK_BASEDIR"
-    },
     {
       "name": "JAVA_HOME",
       "default": "/home/rainer/kkm-paydesk/flohmarkthelfer/jre",
