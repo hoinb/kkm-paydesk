@@ -1,0 +1,7 @@
+{
+  "name": "Flohmarkthelfer - lokale Daten loeschen",
+  "script_path": "./scripts/flohmarkthelfer-cleanup.sh",
+  "working_directory": "..",
+  "output_format": "terminal",
+  "parameters": []
+}
