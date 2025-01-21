@@ -45,7 +45,14 @@ mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/data" \
     && mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/sync" \
   || { echo "cannot create required folders" ; exit 23; }
   
-  
+# Add a .desktop file to Autostart
+mkdir -p ~/.config/autostart \
+    && cp ./install/flohmarkthelfer.desktop  ~/.config/autostart \
+    && chmod +x ~/.config/autostart/flohmarkthelfer.desktop \
+    && sed -i "/Path=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}/" ~/.config/autostart/flohmarkthelfer.desktop \
+  ||  { echo "cannot install ~/.config/autostart/flohmarkthelfer.desktop" ; exit 24; }
+
+
 
 #
 # SECTION 3   ---   Install Bugy Script Server
@@ -84,6 +91,12 @@ mkdir -p ~/.config/systemd/user \
 systemctl --user daemon-reload \
   && systemctl --user enable --now bugy-script-server \
   ||  { echo "cannot launch script-server via systemd" ; exit 37; }
+  
+mkdir -p ~/.config/autostart \
+  && cp ./install/xhost-plus-local.desktop  ~/.config/autostart \
+  && chmod +x ~/.config/autostart/xhost-plus-local.desktop \
+  ||  { echo "cannot install ~/.config/autostart/xhost-plus-local.desktop" ; exit 38; }
+  
 
 
 

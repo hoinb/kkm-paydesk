@@ -1,0 +1,6 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=xhost plus local
+Comment=Adjust X settings so that bugy script server can launch an application with GUI
+Exec=bash -c "xhost + local:"
