@@ -1,5 +1,6 @@
 flohmarkthelfer/data
 flohmarkthelfer/jre
+flohmarkthelfer/lib/secondhand*.jar
 flohmarkthelfer/log
 flohmarkthelfer/sync
 flohmarkthelfer/config.properties
