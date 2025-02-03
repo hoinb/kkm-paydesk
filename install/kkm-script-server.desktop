@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=KKM Script Server
+Path=
+Exec=firefox http://localhost:5000
+Terminal=false

@@ -3,5 +3,6 @@ Type=Application
 Version=1.0
 Name=Flohmarkthelfer
 Path=
+Icon=
 Exec=bash -c "./scripts/launch-flohmarkthelfer.sh || sleep 10"
 Terminal=false
