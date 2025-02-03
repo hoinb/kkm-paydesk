@@ -73,8 +73,6 @@ mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/data" \
     && mkdir -p "$KKM_PAYDESK_BASEDIR/flohmarkthelfer/sync" \
   || { echo "cannot create required folders" ; exit 33; }
   
-echo "DEBUG --- KKM_SECONDHAND_GUI_JAR=\"$KKM_SECONDHAND_GUI_JAR\""
-
 # Check if secondhand-gui jar is set
 test -n "$KKM_SECONDHAND_GUI_JAR" \
   || { echo "ENV variable for secondhand-gui jar is not set" ; exit 34; }
