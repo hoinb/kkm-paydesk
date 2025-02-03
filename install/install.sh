@@ -51,7 +51,7 @@ mkdir -p ~/.config/autostart \
     && chmod +x ~/.config/autostart/flohmarkthelfer.desktop \
     && sed -i "/Icon=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}\/flohmarkthelfer\/floh.png/" ~/.config/autostart/flohmarkthelfer.desktop \
     && sed -i "/Path=/ s/=.*/=${KKM_PAYDESK_BASEDIR//\//\\/}/" ~/.config/autostart/flohmarkthelfer.desktop \
-    && cp ~/.config/autostart/flohmarkthelfer.desktop $(xdg-user-dir DESKTOP) \
+    && cp ~/.config/autostart/flohmarkthelfer.desktop ~/.local/share/applications/ \
   ||  { echo "cannot install ~/.config/autostart/flohmarkthelfer.desktop" ; exit 24; }
 
 
@@ -99,7 +99,7 @@ mkdir -p ~/.config/autostart \
   && chmod +x ~/.config/autostart/xhost-plus-local.desktop \
   ||  { echo "cannot install ~/.config/autostart/xhost-plus-local.desktop" ; exit 38; }
   
-cp ./install/kkm-script-server.desktop $(xdg-user-dir DESKTOP) \
+cp ./install/kkm-script-server.desktop ~/.local/share/applications/ \
   ||  { echo "cannot install Desktop icon" ; exit 39; }
 
 
