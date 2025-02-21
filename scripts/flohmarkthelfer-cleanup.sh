@@ -6,7 +6,7 @@ export WARNING_MESSAGE="ACHTUNG - Alle lokalen Daten werden gelöscht. Fortsetze
 
 read -p "$WARNING_MESSAGE"
 
-rm -f ./floh.mv.db
+rm -f ./*.db
 rm -f ./verkaeufer-abrechnung-overlay.pdf
 rm -rf data/*
 rm -rf sync/*
