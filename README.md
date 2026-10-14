@@ -38,7 +38,7 @@ add user kkmarkt user to /etc/sudoers
 
 ```
 $ cd ~
-$ git checkout https://github.com/hoinb/kkm-paydesk.git
+$ git clone https://github.com/hoinb/kkm-paydesk.git
 $ cd kkm-paydesk
 $ ./install/install.sh
 ```
