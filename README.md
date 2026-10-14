@@ -92,7 +92,7 @@ which the next master image should make unnecessary.
   # /var/lib/connman/guest-wifi.config
   [service_guest]
   Type = wifi
-  Name = Lindenbergstrasse-Gast
+  Name = <ssid>
   Passphrase = <passphrase>
   ```
 - Don't also configure interfaces in `/etc/network/interfaces` (ifupdown).
